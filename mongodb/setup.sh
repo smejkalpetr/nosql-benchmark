@@ -29,7 +29,6 @@ echo "[INFO] Finished replication."
 
 echo "[INFO] Starting workloads..."
 
-
 # BENCHMARK WITH WORKLOADS:
 for i in {1..3} 
 do
