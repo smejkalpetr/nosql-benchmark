@@ -2,7 +2,7 @@
 
 echo "[INFO] Starting Redis benchmark..."
 
-docker-compose up -d
+docker compose up -d
 sudo apt install -y redis-tools
 yes 'yes' | redis-cli --cluster fix localhost:6379
 
