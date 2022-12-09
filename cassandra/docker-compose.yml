@@ -1,1 +1,75 @@
 # this is the docker compose for cassandra
+
+# references:
+# -> https://github.com/bitnami/bitnami-docker-cassandra
+
+version: '3'
+
+networks:
+  cassandraCluster:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.5.0/24
+          gateway: 192.168.5.1
+
+services:
+  cassandra1:
+    image: docker.io/bitnami/cassandra:4.0
+    ports:
+      - 7000:7000
+      - 9042:9042
+    volumes:
+      - cassandra1_data:/bitnami
+    environment:
+      - CASSANDRA_SEEDS=cassandra1,cassandra2,cassandra3
+      - CASSANDRA_CLUSTER_NAME=cassandra-cluster
+      - CASSANDRA_PASSWORD_SEEDER=yes
+      - CASSANDRA_PASSWORD=cassandra
+      - MAX_HEAP_SIZE=2G
+      - HEAP_NEWSIZE=200M
+    networks:
+      cassandraCluster:
+        ipv4_address: 192.168.5.2
+      
+  cassandra2:
+    image: docker.io/bitnami/cassandra:4.0
+    ports:
+      - 7001:7000
+      - 9043:9042
+    volumes:
+      - cassandra2_data:/bitnami
+    environment:
+      - CASSANDRA_SEEDS=cassandra1,cassandra2,cassandra3
+      - CASSANDRA_CLUSTER_NAME=cassandra-cluster
+      - CASSANDRA_PASSWORD=cassandra
+      - MAX_HEAP_SIZE=2G
+      - HEAP_NEWSIZE=200M
+    networks:
+      cassandraCluster:
+        ipv4_address: 192.168.5.3
+
+  cassandra3:
+    image: docker.io/bitnami/cassandra:4.0
+    ports:
+      - 7002:7000
+      - 9044:9042
+    volumes:
+      - cassandra3_data:/bitnami
+    environment:
+      - CASSANDRA_SEEDS=cassandra1,cassandra2,cassandra3
+      - CASSANDRA_CLUSTER_NAME=cassandra-cluster
+      - CASSANDRA_PASSWORD=cassandra
+      - MAX_HEAP_SIZE=2G
+      - HEAP_NEWSIZE=200M
+    networks:
+      cassandraCluster:
+        ipv4_address: 192.168.5.4
+
+volumes:
+  cassandra1_data:
+    driver: local
+  cassandra2_data:
+    driver: local
+  cassandra3_data:
+    driver: local
