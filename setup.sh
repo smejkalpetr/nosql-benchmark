@@ -33,17 +33,14 @@ then
 else
     if [  "$1" == "mongodb" ];
     then
-        # mongodb setup code here
         chmod +x ./mongodb/setup.sh
         ./mongodb/setup.sh
     elif [  "$1" == "cassandra" ];
     then
-        # cassandra setup code here
         chmod +x ./cassandra/setup.sh
         ./cassandra/setup.sh
     elif [  "$1" == "redis" ];
     then
-        # redis setup code here
         chmod +x ./redis/setup.sh
         ./redis/setup.sh
     else
@@ -53,6 +50,8 @@ fi
 
 echo "[INFO] Cleaning..."
 rm -rf YCSB
+deactivate
+rm -rf venv
 echo "[INFO] Cleaning done."
 
 echo "[INFO] Finished."
