@@ -1,1 +1,51 @@
-# this is the docker compose for mongodb
+version: '3'
+
+networks:
+  mongoCluster:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.5.0/24
+          gateway: 192.168.5.1
+
+services:
+  prim:
+    container_name: main
+    image: mongo:5
+    command: mongod --port 27017 --replSet myReplicaSet
+    networks:
+       mongoCluster:
+        ipv4_address: 192.168.5.2
+
+    ports:
+      - 27017
+    
+  second1:
+    container_name: second1
+    command: mongod --port 27017 --replSet myReplicaSet
+    image: mongo:5
+    networks:
+       mongoCluster:
+        ipv4_address: 192.168.5.3
+    ports:
+      - 27017
+    
+  second2:
+    container_name: second2
+    image: mongo:5
+    command: mongod --port 27017 --replSet myReplicaSet
+    networks:
+       mongoCluster:
+         ipv4_address: 192.168.5.4
+    ports:
+      - 27017
+
+  second3:
+    container_name: second3
+    command: mongod --port 27017 --replSet myReplicaSet
+    image: mongo:5
+    networks:
+       mongoCluster:
+        ipv4_address: 192.168.5.5
+    ports:
+      - 27017

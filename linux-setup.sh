@@ -1,12 +1,13 @@
 #!/bin/bash
 
-sudo apt install git -y
-sudo apt install python2 -y
-sudo apt install python3-virtualenv -y
-sudo apt install maven -y
-sudo apt install python2-pip-whl -y
-sudo apt install python2-setuptools-whl -y
-sudo apt install default-jre -y
+sudo apt-get update -y
+
+sudo apt-get install git -y
+sudo apt-get install python2 -y
+sudo apt-get install python3-virtualenv -y
+sudo apt-get install maven -y
+sudo apt-get install python2-pip-whl -y
+sudo apt-get install python2-setuptools-whl -y
 
 # docker
 sudo apt-get update -y
@@ -23,18 +24,17 @@ echo \
   "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
   $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
-sudo apt-get update
+sudo apt-get update -y
 
 sudo chmod a+r /etc/apt/keyrings/docker.gpg
-sudo apt-get update
+sudo apt-get update -y
 
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin -y
 
 # docker-compose
-sudo apt update
-sudo apt upgrade
+sudo apt-get upgrade -y
 
-sudo apt install docker-compose -y
+sudo apt-get install docker-compose -y
 
 # docker permissions
 
