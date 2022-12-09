@@ -5,7 +5,7 @@ echo "[INFO] Starting Redis benchmark..."
 echo "[INFO] Composing Redis cluster..."
 # creating cluster of redis containers
 sudo docker-compose -f redis/docker-compose.yml up -d
-echo "[INFO] MongoDB cluster composed."
+echo "[INFO] Redis cluster composed."
 
 cd YCSB
 
