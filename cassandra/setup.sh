@@ -40,85 +40,26 @@ echo "[INFO] Table created."
 
 echo "[INFO] Starting workloads..."
 
+# BENCHMARK WITH WORKLOADS:
 for i in {1..3} 
 do
     mkdir -p ../output/cassandra/load
     mkdir -p ../output/cassandra/run
 
-    # LOAD WORKLOADS:
-    # workload A load 
-    ./bin/ycsb load cassandra-cql -s -P workloads/workloada \
-    -p "hosts=192.168.5.2,192.168.5.3,192.168.5.4" \
-    -p "cassandra.password=cassandra" \
-    -p "cassandra.username=cassandra" > ../output/cassandra/load/workload-a-load-${i}.txt
+    for x in {a..f}
+    do
+        # LOAD WORKLOADS:
+        ./bin/ycsb load cassandra-cql -s -P workloads/workload${x} \
+        -p "hosts=192.168.5.2,192.168.5.3,192.168.5.4" \
+        -p "cassandra.password=cassandra" \
+        -p "cassandra.username=cassandra" > ../output/cassandra/load/workload-${x}-load-${i}.txt
 
-    # workload B load 
-    ./bin/ycsb load cassandra-cql -s -P workloads/workloadb \
-    -p "hosts=192.168.5.2,192.168.5.3,192.168.5.4" \
-    -p "cassandra.password=cassandra" \
-    -p "cassandra.username=cassandra" > ../output/cassandra/load/workload-b-load-${i}.txt
-
-    # workload C load 
-    ./bin/ycsb load cassandra-cql -s -P workloads/workloadc \
-    -p "hosts=192.168.5.2,192.168.5.3,192.168.5.4" \
-    -p "cassandra.password=cassandra" \
-    -p "cassandra.username=cassandra" > ../output/cassandra/load/workload-c-load-${i}.txt
-
-    # workload D load 
-    ./bin/ycsb load cassandra-cql -s -P workloads/workloadd \
-    -p "hosts=192.168.5.2,192.168.5.3,192.168.5.4" \
-    -p "cassandra.password=cassandra" \
-    -p "cassandra.username=cassandra" > ../output/cassandra/load/workload-d-load-${i}.txt
-
-    # workload E load 
-    ./bin/ycsb load cassandra-cql -s -P workloads/workloade \
-    -p "hosts=192.168.5.2,192.168.5.3,192.168.5.4" \
-    -p "cassandra.password=cassandra" \
-    -p "cassandra.username=cassandra" > ../output/cassandra/load/workload-e-load-${i}.txt
-
-    # workload F load 
-    ./bin/ycsb load cassandra-cql -s -P workloads/workloade \
-    -p "hosts=192.168.5.2,192.168.5.3,192.168.5.4" \
-    -p "cassandra.password=cassandra" \
-    -p "cassandra.username=cassandra" > ../output/cassandra/load/workload-f-load-${i}.txt
-
-
-    # RUN WORKLOADS:
-    # workload A run 
-    ./bin/ycsb run cassandra-cql -s -P workloads/workloada \
-    -p "hosts=192.168.5.2,192.168.5.3,192.168.5.4" \
-    -p "cassandra.password=cassandra" \
-    -p "cassandra.username=cassandra" > ../output/cassandra/run/workload-a-run-${i}.txt
-
-     # workload B run 
-    ./bin/ycsb run cassandra-cql -s -P workloads/workloadb \
-    -p "hosts=192.168.5.2,192.168.5.3,192.168.5.4" \
-    -p "cassandra.password=cassandra" \
-    -p "cassandra.username=cassandra" > ../output/cassandra/run/workload-b-run-${i}.txt
-
-     # workload C run 
-    ./bin/ycsb run cassandra-cql -s -P workloads/workloadc \
-    -p "hosts=192.168.5.2,192.168.5.3,192.168.5.4" \
-    -p "cassandra.password=cassandra" \
-    -p "cassandra.username=cassandra" > ../output/cassandra/run/workload-c-run-${i}.txt
-
-     # workload D run 
-    ./bin/ycsb run cassandra-cql -s -P workloads/workloadd \
-    -p "hosts=192.168.5.2,192.168.5.3,192.168.5.4" \
-    -p "cassandra.password=cassandra" \
-    -p "cassandra.username=cassandra" > ../output/cassandra/run/workload-d-run-${i}.txt
-
-     # workload E run 
-    ./bin/ycsb run cassandra-cql -s -P workloads/workloade \
-    -p "hosts=192.168.5.2,192.168.5.3,192.168.5.4" \
-    -p "cassandra.password=cassandra" \
-    -p "cassandra.username=cassandra" > ../output/cassandra/run/workload-e-run-${i}.txt
-
-     # workload F run 
-    ./bin/ycsb run cassandra-cql -s -P workloads/workloadf \
-    -p "hosts=192.168.5.2,192.168.5.3,192.168.5.4" \
-    -p "cassandra.password=cassandra" \
-    -p "cassandra.username=cassandra" > ../output/cassandra/run/workload-f-run-${i}.txt
+        # RUN WORKLOADS:
+        ./bin/ycsb run cassandra-cql -s -P workloads/workload${x} \
+        -p "hosts=192.168.5.2,192.168.5.3,192.168.5.4" \
+        -p "cassandra.password=cassandra" \
+        -p "cassandra.username=cassandra" > ../output/cassandra/load/workload-${x}-load-${i}.txt
+    done
 done
 echo "[INFO] Workloads done."
 
