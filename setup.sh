@@ -3,20 +3,13 @@
 echo "[INFO] Starting..."
 echo "[INFO] Installing requirements and setting up the venv..."
 
-# macOS
-# brew install python3
-# brew install virtualenv
-brew install mvn
-brew install docker
+# install required tools
+chmod +x linux-setup.sh
+./linux-setup.sh
 
-# Linux
-# apt-get install -y python3-pip
-# pip3 install virtualenv 
-# apt-get install -y docker
-# apt-get install -y mvn
-
-# virtualenv venv
-# source venv/bin/activate
+# create venv with python2 which is required to run YCSB
+virtualenv -p /usr/bin/python2 venv
+source venv/bin/activate
 
 # clone YCSB & build it
 git clone https://github.com/brianfrankcooper/YCSB.git
