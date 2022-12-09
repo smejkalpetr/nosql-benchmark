@@ -9,7 +9,7 @@ networks:
           gateway: 192.168.5.1
 
 services:
-  prim:
+  main:
     container_name: main
     image: mongo:5
     command: mongod --port 27017 --replSet myReplicaSet

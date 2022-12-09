@@ -7,7 +7,7 @@ echo "[INFO] Installing requirements and setting up the venv..."
 chmod +x linux-setup.sh
 ./linux-setup.sh
 
-# create venv with python2 which is required to run YCSB
+# create venv with python2 which is required to run YCSB and activate it
 virtualenv -p /usr/bin/python2 venv
 source venv/bin/activate
 
