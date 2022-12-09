@@ -10,7 +10,7 @@ echo "[INFO] MongoDB cluster composed."
 
 cd YCSB
 
-echo "[INFO] Waiting (3 minutes) for the cluster to be ready..."
+echo "[INFO] Waiting (1 minute) for the cluster to be ready..."
 # wait for the cluster to be ready (otherwise was getting connection refused)
 sleep 60
 echo "[INFO] Cluster is now ready."
