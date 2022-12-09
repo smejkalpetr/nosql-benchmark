@@ -125,7 +125,7 @@ echo "[INFO] Workloads done."
 cd ../
 
 echo "[INFO] Shutting down the docker containers..."
-docker-compose -f cassandra/docker-compose.yml down -v
+sudo docker-compose -f cassandra/docker-compose.yml down -v
 echo "[INFO] Containers have been shut down."
 
 echo "[INFO] Done Cassandra benchmark."
